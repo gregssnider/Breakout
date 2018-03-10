@@ -10,7 +10,7 @@ public class Ball extends Rectangle {
      *
      * @see Rectangle class
      */
-    public Ball(int x, int y, int width, int height) {
-        super(x, y, width, height);
+    public Ball(int x, int y, int diameter) {
+        super(x, y, diameter, diameter);
     }
 }
