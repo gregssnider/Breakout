@@ -55,7 +55,7 @@ public class Rectangle {
             return true;
         if (contains(other.x + width - 1, other.y + height - 1))
             return true;
-        return true;
+        return false;
     }
 
     /** Get x coordinate of upper left corner. */
@@ -86,5 +86,25 @@ public class Rectangle {
     /** Get height of rectangle. */
     public int getHeight() {
         return height;
+    }
+
+    /** Test code for Rectangle class. */
+    public static void main(String[] args) {
+        Rectangle r1 = new Rectangle(0, 0, 10, 10);
+        Rectangle r2 = new Rectangle(5, 5, 10, 10);
+        Rectangle r3 = new Rectangle(10, 10, 10, 10);
+        check(r1.intersects(r2));
+        check(r2.intersects(r1));
+        check(!r1.intersects(r3));
+        check(!r3.intersects(r1));
+        check(r2.intersects(r3));
+        check(r3.intersects(r2));
+        System.out.println("Rectangle tests passed.");
+    }
+
+    public static void check(boolean expression) {
+        if (!expression) {
+            throw new RuntimeException("Test failed.");
+        }
     }
 }
