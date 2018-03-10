@@ -32,11 +32,8 @@ public class Rectangle {
      * @return True if point is in this rectangle.
      */
     public boolean contains(int pointX, int pointY) {
-        if (pointX < x || pointX >= x + width)
-            return false;
-        if (pointY < y || pointY >= y + height)
-            return false;
-        return true;
+        return pointX >= x && pointX < x + width &&
+                pointY >= y && pointY < y + height;
     }
 
     /**
@@ -49,11 +46,11 @@ public class Rectangle {
         // Check four corners of 'other'. If any contained in 'this', return true.
         if (contains(other.x, other.y))
             return true;
-        if (contains(other.x + width - 1, other.y))
+        if (contains(other.x + other.width - 1, other.y))
             return true;
-        if (contains(other.x, other.y + height - 1))
+        if (contains(other.x, other.y + other.height - 1))
             return true;
-        if (contains(other.x + width - 1, other.y + height - 1))
+        if (contains(other.x + other.width - 1, other.y + other.height - 1))
             return true;
         return false;
     }
@@ -86,6 +83,10 @@ public class Rectangle {
     /** Get height of rectangle. */
     public int getHeight() {
         return height;
+    }
+
+    public void print() {
+        System.out.println("  " + x + " " + y + " " + width + " " + height);
     }
 
     /** Test code for Rectangle class. */

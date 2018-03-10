@@ -51,4 +51,34 @@ public class Board extends Rectangle {
                 wallThickness,
                 getHeight());
     }
+
+    /** Test code for Board class. */
+    public static void main(String[] args) {
+        int brickWidth = 20;
+        int brickHeight = 5;
+        int brickRows = 4;
+        int brickColumns = 11;
+        Board board = new Board(brickWidth, brickHeight, brickRows,
+                brickColumns);
+        Wall[] walls = {board.leftWall, board.rightWall, board.floor,
+                board.ceiling};
+        for (Wall wall_1 : walls) {
+            for (Wall wall_2 : walls) {
+                if (wall_1 == wall_2) {
+                    check(wall_1.intersects(wall_2));
+                    check(wall_2.intersects(wall_1));
+                } else {
+                    check(!wall_1.intersects(wall_2));
+                    check(!wall_2.intersects(wall_1));
+                }
+            }
+        }
+        System.out.println("Board tests passed.");
+    }
+
+    public static void check(boolean expression) {
+        if (!expression) {
+            throw new RuntimeException("Test failed.");
+        }
+    }
 }
