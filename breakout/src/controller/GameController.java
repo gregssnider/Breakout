@@ -14,9 +14,10 @@ public class GameController {
 
         //1. Create the frame.
         JFrame frame = new JFrame("Breakout");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
         frame.pack();
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 }

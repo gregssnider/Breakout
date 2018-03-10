@@ -35,7 +35,7 @@ public class Board extends Rectangle {
         // "tunnel through" them if moving quickly.
         int wallThickness = 400;
         floor = new Wall(-wallThickness,
-                (int) getHeight(),
+                getHeight(),
                 getWidth() + 2 * wallThickness,
                 wallThickness);
         ceiling = new Wall(-wallThickness,
@@ -51,6 +51,8 @@ public class Board extends Rectangle {
                 wallThickness,
                 getHeight());
     }
+
+    public Brick[][] getBricks() {return bricks;}
 
     /** Test code for Board class. */
     public static void main(String[] args) {

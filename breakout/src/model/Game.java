@@ -3,13 +3,13 @@ package model;
 public class Game {
 
     // Geometric parameters of game.
-    public static final int brickWidth = 50;
-    public static final int brickHeight = 20;
-    public static final int brickRows = 4;
-    public static final int brickColumns = 11;
-    public static final int ballDiameter = 10;
-    public static final int paddleWidth = 70;
-    public static final int paddleHeight = 10;
+    private static final int brickWidth = 80;
+    private static final int brickHeight = 30;
+    private static final int brickRows = 4;
+    private static final int brickColumns = 11;
+    private static final int ballDiameter = 10;
+    private static final int paddleWidth = 70;
+    private static final int paddleHeight = 10;
 
     // Components of the game.
     private Board board;

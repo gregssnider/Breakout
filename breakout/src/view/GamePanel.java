@@ -2,10 +2,7 @@ package view;
 import java.awt.*;
 import javax.swing.JPanel;
 
-import model.Game;
-import model.Ball;
-import model.Board;
-import model.Paddle;
+import model.*;
 
 
 public class GamePanel extends JPanel {
@@ -18,9 +15,21 @@ public class GamePanel extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawRect(230,80,10,10);
-        g.setColor(Color.RED);
-        g.fillRect(230,80,10,10);
+        Board board = game.getBoard();
+        Brick[][] bricks = board.getBricks();
+        for (int row = 0; row < bricks.length; row++) {
+            for (int col = 0; col < bricks[0].length; col++) {
+                Brick brick = bricks[row][col];
+                int x = brick.getX();
+                int y = brick.getY();
+                int width = brick.getWidth();
+                int height = brick.getHeight();
+                g.setColor(Color.RED);
+                g.fillRect(x, y, width, height);
+                g.setColor(Color.BLACK);
+                g.drawRect(x, y, width, height);
+            }
+        }
     }
 
     public Dimension getPreferredSize() {
