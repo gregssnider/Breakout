@@ -4,10 +4,10 @@ package model;
  * Base class for all rectangular shapes (paddle, brick, ball, ...)
  */
 public class Rectangle {
-    public final int x;         // X coordinate of upper left corner.
-    public final int y;         // Y coordinate of upper left corner.
-    public final int width;     // Width of rectangle.
-    public final int height;    // Height of rectangle.
+    private int x;         // X coordinate of upper left corner.
+    private int y;         // Y coordinate of upper left corner.
+    private int width;     // Width of rectangle.
+    private int height;    // Height of rectangle.
 
     /**
      * Create a rectangle.
@@ -56,5 +56,35 @@ public class Rectangle {
         if (contains(other.x + width - 1, other.y + height - 1))
             return true;
         return true;
+    }
+
+    /** Get x coordinate of upper left corner. */
+    public int getX() {
+        return x;
+    }
+
+    /** Get y coordinate of upper left corner. */
+    public int getY() {
+        return y;
+    }
+
+    /** Set x coordinate of upper left corner. */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /** Set y coordinate of upper left corner. */
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    /** Get width of rectangle. */
+    public int getWidth() {
+        return width;
+    }
+
+    /** Get height of rectangle. */
+    public int getHeight() {
+        return height;
     }
 }
