@@ -15,8 +15,8 @@ public class Ball extends Rectangle {
      */
     public Ball(int x, int y, int diameter) {
         super(x, y, diameter, diameter);
-        speedX = 5;
-        speedY = 5;
+        speedX = 3;
+        speedY = 3;
     }
 
     /** Move the ball one step in time based on its speed. */

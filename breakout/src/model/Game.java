@@ -8,7 +8,7 @@ public class Game {
     private static final int brickRows = 4;
     private static final int brickColumns = 11;
     private static final int ballDiameter = 10;
-    private static final int paddleWidth = 70;
+    private static final int paddleWidth = 100;
     private static final int paddleHeight = 10;
 
     // Components of the game.
@@ -17,18 +17,37 @@ public class Game {
     public Paddle paddle;
     private boolean running = false;
 
+    /** Construct the game. */
     public Game() {
         board = new Board(brickWidth, brickHeight, brickRows, brickColumns);
         int boardWidth = board.width;
         int boardHeight = board.height;
         ball = new Ball(boardWidth / 2, boardHeight / 2, ballDiameter);
-        paddle = new Paddle(10, 20, paddleWidth, paddleHeight);
+        paddle = new Paddle(boardWidth / 2, boardHeight - 30,
+                paddleWidth, paddleHeight);
     }
 
+    /**
+     * Move the paddle to a new position in the x direction.
+     *
+     * @param xPosition Position of the center of the paddle after the move.
+     */
+    public void movePaddle(int xPosition) {
+        // Paddle coordinates start at upper left corner, correct for that.
+        int newX = xPosition - paddleWidth / 2;
+        if (newX < 0)
+            newX = 0;
+        if (newX > (board.width - paddle.width))
+            newX = board.width - paddle.width;
+        paddle.x = newX;
+    }
+
+    /** Start the game. */
     public void start() {
         running = true;
     }
 
+    /** Advance the state of the game by one clock tick. */
     public void advanceGameState() {
         if (!running)
             return;
@@ -45,6 +64,9 @@ public class Game {
             ball.speedY *= -1;
 
         // See if ball hits the paddle.
+        if (ball.intersects(paddle))
+            ball.speedY *= -1;
+            ball.move();
 
         // See if ball hits a break.
         for (int row = 0; row < board.bricks.length; row++) {
