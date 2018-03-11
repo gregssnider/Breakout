@@ -12,23 +12,27 @@ public class Game {
     private static final int paddleHeight = 10;
 
     // Components of the game.
-    private Board board;
-    private Ball ball;
-    private Paddle paddle;
+    public Board board;
+    public Ball ball;
+    public Paddle paddle;
 
     public Game() {
         board = new Board(brickWidth, brickHeight, brickRows, brickColumns);
-        ball = new Ball(0, 0, ballDiameter);
+        int boardWidth = board.width;
+        int boardHeight = board.height;
+        ball = new Ball(boardWidth / 2, boardHeight / 2, ballDiameter);
         paddle = new Paddle(10, 20, paddleWidth, paddleHeight);
     }
 
     public void advanceGameState() {
-        System.out.println("Game.advanceGameState()");
+        ball.move();
+        if (ball.intersects(board.leftWall))
+            ball.speedX *= -1;
+        if (ball.intersects(board.rightWall))
+            ball.speedX *= -1;
+        if (ball.intersects(board.ceiling))
+            ball.speedY *= -1;
+        if (ball.intersects(board.floor))
+            ball.speedY *= -1;
     }
-
-    public Board getBoard() {return board;}
-
-    public Ball getBall() {return ball;}
-
-    public Paddle getPaddle() {return paddle;}
 }

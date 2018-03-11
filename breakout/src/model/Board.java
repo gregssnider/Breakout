@@ -5,11 +5,11 @@ package model;
  */
 public class Board extends Rectangle {
 
-    private Wall leftWall;     // Rectangle just to the left of the board.
-    private Wall rightWall;    // Rectangle just to the right of the board.
-    private Wall floor;        // Rectangle just below the board.
-    private Wall ceiling;      // Rectangle just above the board.
-    private Brick[][] bricks;  // The bricks on the board.
+    public Wall leftWall;     // Rectangle just to the left of the board.
+    public Wall rightWall;    // Rectangle just to the right of the board.
+    public Wall floor;        // Rectangle just below the board.
+    public Wall ceiling;      // Rectangle just above the board.
+    public Brick[][] bricks;  // The bricks on the board.
 
     public Board(int brickWidth, int brickHeight, int brickRows,
                  int brickColumns)
@@ -34,18 +34,15 @@ public class Board extends Rectangle {
         // Create walls. Make them thick enough that the ball can't accidentally
         // "tunnel through" them if moving quickly.
         int wallThickness = 400;
-        floor = new Wall(-wallThickness, getHeight(),
-                getWidth() + 2 * wallThickness, wallThickness);
+        floor = new Wall(-wallThickness, height,
+                width + 2 * wallThickness, wallThickness);
         ceiling = new Wall(-wallThickness, -wallThickness,
-                getWidth() + 2 * wallThickness, wallThickness);
+                width + 2 * wallThickness, wallThickness);
         leftWall = new Wall(-wallThickness, 0,
-                wallThickness, getHeight());
-        rightWall = new Wall(getWidth(), 0,
-                wallThickness, getHeight());
+                wallThickness, height);
+        rightWall = new Wall(width, 0,
+                wallThickness, height);
     }
-
-    /** Return bricks of board. */
-    public Brick[][] getBricks() {return bricks;}
 
     /** Test code for Board class. */
     public static void main(String[] args) {

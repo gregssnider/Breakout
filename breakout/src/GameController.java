@@ -1,20 +1,19 @@
 import javax.swing.*;
-import model.Game;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import model.Game;
 
-
+/**
+ * Controller for Breakout.
+ */
 class GameController extends JFrame {
-
     private Game game;
     private GameView gameView;
     private JButton startButton;
     private Timer timer;
-
 
     GameController() {
         super("Breakout");
@@ -27,19 +26,20 @@ class GameController extends JFrame {
         contentPane.add(gameView, BorderLayout.CENTER);
         contentPane.add(startButton, BorderLayout.SOUTH);
 
-        // Listen for start button presses to start the game.
+        // Listen for start button presses to (re)start the game.
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Start button pressed");
+                game = new Game();
+                gameView.setGame(game);
                 timer.start();
             }
         } );
 
         // Listen for timer to animate the game.
-        timer = new Timer(1000, new ActionListener() {
+        timer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                System.out.println("timer advanceGameState");
                 game.advanceGameState();
                 gameView.updateView();
             }

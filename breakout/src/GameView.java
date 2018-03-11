@@ -12,24 +12,32 @@ public class GameView extends JPanel {
         this.game = game;
     }
 
+    /** Change the game being viewed. */
+    void setGame(Game game) {
+        this.game = game;
+        updateView();
+    }
+
+    /** Update and repaint the view of the game. */
     void updateView() {
         repaint();
     }
 
+    /** Paint the board, ball, and paddle. */
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Board board = game.getBoard();
+        Board board = game.board;
 
         // Paint bricks.
-        Brick[][] bricks = board.getBricks();
+        Brick[][] bricks = board.bricks;
         for (Brick[] row : bricks) {
             for (Brick brick : row) {
                 if (brick == null)
                     return;
-                int x = brick.getX();
-                int y = brick.getY();
-                int width = brick.getWidth();
-                int height = brick.getHeight();
+                int x = brick.x;
+                int y = brick.y;
+                int width = brick.width;
+                int height = brick.height;
                 g.setColor(Color.RED);
                 g.fillRect(x, y, width, height);
                 g.setColor(Color.BLACK);
@@ -37,13 +45,19 @@ public class GameView extends JPanel {
             }
         }
 
-        // Paint paddle.
+        // Paint the paddle.
+        Paddle paddle = game.paddle;
+        g.setColor(Color.BLUE);
+        g.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
 
-        // Paint ball.
+        // Paint the ball.
+        Ball ball = game.ball;
+        g.setColor(Color.BLACK);
+        g.fillRect(ball.x, ball.y, ball.width, ball.height);
     }
 
     public Dimension getPreferredSize() {
-        Board board = game.getBoard();
-        return new Dimension(board.getWidth(), board.getHeight());
+        Board board = game.board;
+        return new Dimension(board.width, board.height);
     }
 }

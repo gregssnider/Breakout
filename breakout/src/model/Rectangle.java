@@ -3,11 +3,11 @@ package model;
 /**
  * Base class for all rectangular shapes (paddle, brick, ball, ...)
  */
-public class Rectangle {
-    private int x;         // X coordinate of upper left corner.
-    private int y;         // Y coordinate of upper left corner.
-    private int width;     // Width of rectangle.
-    private int height;    // Height of rectangle.
+class Rectangle {
+    public int x;         // X coordinate of upper left corner.
+    public int y;         // Y coordinate of upper left corner.
+    public int width;     // Width of rectangle.
+    public int height;    // Height of rectangle.
 
     /**
      * Create a rectangle.
@@ -17,7 +17,7 @@ public class Rectangle {
      * @param width Width.
      * @param height Height.
      */
-    public Rectangle(int x, int y, int width, int height) {
+    Rectangle(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -31,7 +31,7 @@ public class Rectangle {
      * @param pointY Y coordinate of point.
      * @return True if point is in this rectangle.
      */
-    public boolean contains(int pointX, int pointY) {
+    boolean contains(int pointX, int pointY) {
         return pointX >= x && pointX < x + width &&
                 pointY >= y && pointY < y + height;
     }
@@ -42,7 +42,7 @@ public class Rectangle {
      * @param other The other rectangle.
      * @return true if 'this' and 'other' interset.
      */
-    public boolean intersects(Rectangle other) {
+    boolean intersects(Rectangle other) {
         // Check four corners of 'other'. If any contained in 'this', return true.
         if (contains(other.x, other.y))
             return true;
@@ -55,37 +55,7 @@ public class Rectangle {
         return false;
     }
 
-    /** Get x coordinate of upper left corner. */
-    public int getX() {
-        return x;
-    }
-
-    /** Get y coordinate of upper left corner. */
-    public int getY() {
-        return y;
-    }
-
-    /** Set x coordinate of upper left corner. */
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    /** Set y coordinate of upper left corner. */
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    /** Get width of rectangle. */
-    public int getWidth() {
-        return width;
-    }
-
-    /** Get height of rectangle. */
-    public int getHeight() {
-        return height;
-    }
-
-    public void print() {
+    void print() {
         System.out.println("  " + x + " " + y + " " + width + " " + height);
     }
 
@@ -103,7 +73,7 @@ public class Rectangle {
         System.out.println("Rectangle tests passed.");
     }
 
-    public static void check(boolean expression) {
+    static void check(boolean expression) {
         if (!expression) {
             throw new RuntimeException("Test failed.");
         }
