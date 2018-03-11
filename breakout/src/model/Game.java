@@ -16,6 +16,7 @@ public class Game {
     public Ball ball;
     public Paddle paddle;
     private boolean running = false;
+    private int score = 0;
 
     /** Construct the game. */
     public Game() {
@@ -45,6 +46,11 @@ public class Game {
     /** Start the game. */
     public void start() {
         running = true;
+    }
+
+    /** Get the current score. */
+    public int getScore() {
+        return score;
     }
 
     /** Advance the state of the game by one clock tick. */
@@ -78,6 +84,7 @@ public class Game {
                     board.bricks[row][col] = null;
                     ball.speedY *= -1;
                     ball.move();
+                    score++;
                     return;
                 }
             }
