@@ -66,8 +66,10 @@ public class Game {
             ball.speedX *= -1;
         if (ball.intersects(board.ceiling))
             ball.speedY *= -1;
-        if (ball.intersects(board.floor))
+        if (ball.intersects(board.floor)) {
             ball.speedY *= -1;
+            running = false;
+        }
 
         // See if ball hits the paddle.
         if (ball.intersects(paddle))

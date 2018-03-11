@@ -29,7 +29,6 @@ class GameController extends JFrame {
         // Listen for start button presses to (re)start the game.
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Start button pressed");
                 game = new Game();
                 gameView.setGame(game);
                 game.start();

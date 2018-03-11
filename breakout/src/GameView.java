@@ -1,14 +1,53 @@
 import java.awt.*;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import model.*;
 
-
+/**
+ * A graphical view of a Breakout game.
+ */
 public class GameView extends JPanel {
+
+    private JLabel score;
+    private GamePanel gamePanel;
+    private Game game;
+
+    /**
+     * Construct a view of a game.
+     *
+     * @param game The game to view
+     */
+    public GameView(Game game) {
+        setLayout(new BorderLayout());
+        this.game = game;
+        gamePanel = new GamePanel(game);
+        score = new JLabel("Score: 0");
+        add(score, BorderLayout.NORTH);
+        add(gamePanel, BorderLayout.CENTER);
+    }
+
+    /** Set the game to be viewed. */
+    public void setGame(Game game) {
+        this.game = game;
+        gamePanel.setGame(game);
+    }
+
+    /** Update the view of the game. */
+    public void updateView() {
+        score.setText("Score: " + game.getScore());
+        score.repaint();
+        gamePanel.updateView();
+    }
+}
+
+/**
+ * Graphical view of bricks, ball, and paddle.
+ */
+class GamePanel extends JPanel {
 
     private Game game;
 
-    GameView(Game game) {
+    GamePanel(Game game) {
         this.game = game;
         setPreferredSize(getPreferredSize());
         setDoubleBuffered(true);
