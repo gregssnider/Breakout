@@ -1,19 +1,18 @@
-package view;
 import java.awt.*;
 import javax.swing.JPanel;
 
 import model.*;
 
 
-public class GamePanel extends JPanel {
+public class GameView extends JPanel {
 
     private Game game;
 
-    public GamePanel(Game game) {
+    GameView(Game game) {
         this.game = game;
     }
 
-    public void updateView() {
+    void updateView() {
         repaint();
     }
 
