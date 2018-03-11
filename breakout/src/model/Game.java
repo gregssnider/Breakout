@@ -15,6 +15,7 @@ public class Game {
     public Board board;
     public Ball ball;
     public Paddle paddle;
+    private boolean running = false;
 
     public Game() {
         board = new Board(brickWidth, brickHeight, brickRows, brickColumns);
@@ -24,7 +25,13 @@ public class Game {
         paddle = new Paddle(10, 20, paddleWidth, paddleHeight);
     }
 
+    public void start() {
+        running = true;
+    }
+
     public void advanceGameState() {
+        if (!running)
+            return;
         ball.move();
         if (ball.intersects(board.leftWall))
             ball.speedX *= -1;

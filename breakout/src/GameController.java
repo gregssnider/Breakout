@@ -13,7 +13,6 @@ class GameController extends JFrame {
     private Game game;
     private GameView gameView;
     private JButton startButton;
-    private javax.swing.Timer timer;
 
     GameController() {
         super("Breakout");
@@ -32,7 +31,7 @@ class GameController extends JFrame {
                 System.out.println("Start button pressed");
                 game = new Game();
                 gameView.setGame(game);
-                timer.start();
+                game.start();
             }
         } );
 
@@ -54,6 +53,9 @@ class GameController extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Run the game until user closes the window.
+     */
     public void run() {
         while (true) {
             game.advanceGameState();
