@@ -13,7 +13,7 @@ class GameController extends JFrame {
     private Game game;
     private GameView gameView;
     private JButton startButton;
-    private Timer timer;
+    private javax.swing.Timer timer;
 
     GameController() {
         super("Breakout");
@@ -36,15 +36,6 @@ class GameController extends JFrame {
             }
         } );
 
-        // Listen for timer to animate the game.
-        timer = new Timer(100, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                game.advanceGameState();
-                gameView.updateView();
-            }
-        });
-
         // Listen for mouse events to move paddle.
         gameView.addMouseMotionListener(new MouseMotionListener() {
             public void mouseMoved(MouseEvent event) {
@@ -61,5 +52,16 @@ class GameController extends JFrame {
         pack();
         setResizable(false);
         setVisible(true);
+    }
+
+    public void run() {
+        while (true) {
+            game.advanceGameState();
+            gameView.updateView();
+            try {
+                Thread.sleep(10L);
+            } catch (java.lang.InterruptedException e) {
+            }
+        }
     }
 }

@@ -10,6 +10,8 @@ public class GameView extends JPanel {
 
     GameView(Game game) {
         this.game = game;
+        setPreferredSize(getPreferredSize());
+        setDoubleBuffered(true);
     }
 
     /** Change the game being viewed. */
@@ -25,8 +27,12 @@ public class GameView extends JPanel {
 
     /** Paint the board, ball, and paddle. */
     protected void paintComponent(Graphics g) {
+        Toolkit.getDefaultToolkit().sync();
         super.paintComponent(g);
         Board board = game.board;
+
+        g.setColor(Color.CYAN);
+        g.fillRect(0, 0, board.width, board.height);
 
         // Paint bricks.
         Brick[][] bricks = board.bricks;

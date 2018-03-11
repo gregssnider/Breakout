@@ -5,7 +5,7 @@ public class Breakout {
      * @param args Not used.
      */
     public static void main(String[] args) {
-        System.out.println("Breakout");
-        new GameController();
+        GameController controller = new GameController();
+        controller.run();
     }
 }
