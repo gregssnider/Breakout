@@ -31,27 +31,20 @@ public class Board extends Rectangle {
             }
         }
 
-        // Create walls. Make them thick enough that ball can't accidentally
+        // Create walls. Make them thick enough that the ball can't accidentally
         // "tunnel through" them if moving quickly.
         int wallThickness = 400;
-        floor = new Wall(-wallThickness,
-                getHeight(),
-                getWidth() + 2 * wallThickness,
-                wallThickness);
-        ceiling = new Wall(-wallThickness,
-                -wallThickness,
-                getWidth() + 2 * wallThickness,
-                wallThickness);
-        leftWall = new Wall(-wallThickness,
-                0,
-                wallThickness,
-                getHeight());
-        rightWall = new Wall(getWidth(),
-                0,
-                wallThickness,
-                getHeight());
+        floor = new Wall(-wallThickness, getHeight(),
+                getWidth() + 2 * wallThickness, wallThickness);
+        ceiling = new Wall(-wallThickness, -wallThickness,
+                getWidth() + 2 * wallThickness, wallThickness);
+        leftWall = new Wall(-wallThickness, 0,
+                wallThickness, getHeight());
+        rightWall = new Wall(getWidth(), 0,
+                wallThickness, getHeight());
     }
 
+    /** Return bricks of board. */
     public Brick[][] getBricks() {return bricks;}
 
     /** Test code for Board class. */
