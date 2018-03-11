@@ -22,6 +22,10 @@ public class Game {
         paddle = new Paddle(10, 20, paddleWidth, paddleHeight);
     }
 
+    public void advanceGameState() {
+        System.out.println("Game.advanceGameState()");
+    }
+
     public Board getBoard() {return board;}
 
     public Ball getBall() {return ball;}

@@ -13,13 +13,20 @@ public class GamePanel extends JPanel {
         this.game = game;
     }
 
+    public void updateView() {
+        repaint();
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Board board = game.getBoard();
+
+        // Paint bricks.
         Brick[][] bricks = board.getBricks();
-        for (int row = 0; row < bricks.length; row++) {
-            for (int col = 0; col < bricks[0].length; col++) {
-                Brick brick = bricks[row][col];
+        for (Brick[] row : bricks) {
+            for (Brick brick : row) {
+                if (brick == null)
+                    return;
                 int x = brick.getX();
                 int y = brick.getY();
                 int width = brick.getWidth();
@@ -30,6 +37,10 @@ public class GamePanel extends JPanel {
                 g.drawRect(x, y, width, height);
             }
         }
+
+        // Paint paddle.
+
+        // Paint ball.
     }
 
     public Dimension getPreferredSize() {
