@@ -34,5 +34,8 @@ public class Game {
             ball.speedY *= -1;
         if (ball.intersects(board.floor))
             ball.speedY *= -1;
+        ball.print("ball");
+        board.floor.print("floor");
+        System.out.println("    intersects: " + ball.intersects(board.floor));
     }
 }
