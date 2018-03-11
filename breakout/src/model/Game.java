@@ -33,6 +33,8 @@ public class Game {
         if (!running)
             return;
         ball.move();
+
+        // See if ball hits a wall.
         if (ball.intersects(board.leftWall))
             ball.speedX *= -1;
         if (ball.intersects(board.rightWall))
@@ -41,5 +43,22 @@ public class Game {
             ball.speedY *= -1;
         if (ball.intersects(board.floor))
             ball.speedY *= -1;
+
+        // See if ball hits the paddle.
+
+        // See if ball hits a break.
+        for (int row = 0; row < board.bricks.length; row++) {
+            for (int col = 0; col < board.bricks[0].length; col++) {
+                Brick brick = board.bricks[row][col];
+                if (brick == null)
+                    continue;
+                if (ball.intersects(brick)) {
+                    board.bricks[row][col] = null;
+                    ball.speedY *= -1;
+                    ball.move();
+                    return;
+                }
+            }
+        }
     }
 }

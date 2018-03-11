@@ -31,7 +31,7 @@ public class GameView extends JPanel {
         super.paintComponent(g);
         Board board = game.board;
 
-        g.setColor(Color.CYAN);
+        g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, board.width, board.height);
 
         // Paint bricks.
@@ -39,7 +39,7 @@ public class GameView extends JPanel {
         for (Brick[] row : bricks) {
             for (Brick brick : row) {
                 if (brick == null)
-                    return;
+                    continue;
                 int x = brick.x;
                 int y = brick.y;
                 int width = brick.width;

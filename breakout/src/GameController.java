@@ -14,6 +14,7 @@ class GameController extends JFrame {
     private GameView gameView;
     private JButton startButton;
 
+    /** Constructor. */
     GameController() {
         super("Breakout");
         game = new Game();
