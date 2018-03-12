@@ -40,11 +40,11 @@ class Rectangle {
      * Check if this rectangle intersects another.
      *
      * @param other The other rectangle.
-     * @return true if 'this' and 'other' interset.
+     * @return true if 'this' and 'other' intersect.
      */
     boolean intersects(Rectangle other) {
-        // Check four corners of 'other'. If any contained in 'this', return true.
-        // Swap roles of this and other and recheck.
+        // Check four corners of 'other'. If any contained in 'this', return
+        // true.
         if (contains(other.x, other.y))
             return true;
         if (contains(other.x + other.width - 1, other.y))
@@ -54,6 +54,7 @@ class Rectangle {
         if (contains(other.x + other.width - 1, other.y + other.height - 1))
             return true;
 
+        // Swap roles of 'this' and 'other' and recheck.
         if (other.contains(x, y))
             return true;
         if (other.contains(x + width - 1, y))
@@ -63,6 +64,7 @@ class Rectangle {
         if (other.contains(x + width - 1, y + height - 1))
             return true;
 
+        // Nope, no intersection.
         return false;
     }
 
