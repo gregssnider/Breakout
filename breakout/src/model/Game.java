@@ -31,7 +31,7 @@ public class Game {
         int boardWidth = board.width;
         int boardHeight = board.height;
         ball = new Ball(boardWidth / 2, boardHeight / 2, ballDiameter);
-        paddle = new Paddle(boardWidth / 2, boardHeight - 30,
+        paddle = new Paddle(boardWidth / 2, boardHeight - brickHeight,
                 paddleWidth, paddleHeight);
     }
 
@@ -61,7 +61,9 @@ public class Game {
     }
 
     /** Check if game is over. */
-    public boolean gameIsOver() {return gameOver;}
+    public boolean gameIsOver() {
+        return gameOver;
+    }
 
     /** Advance the state of the game by one clock tick. */
     public void advanceGameState() {
@@ -83,9 +85,10 @@ public class Game {
         }
 
         // See if ball hits the paddle.
-        if (ball.intersects(paddle))
+        if (ball.intersects(paddle)) {
             ball.speedY *= -1;  // bounce
             ball.move();
+        }
 
         // See if ball hits a brick.
         for (int row = 0; row < board.bricks.length; row++) {

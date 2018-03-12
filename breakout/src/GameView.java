@@ -47,14 +47,10 @@ class GameView extends JPanel {
             for (Brick brick : row) {
                 if (brick == null)
                     continue;
-                int x = brick.x;
-                int y = brick.y;
-                int width = brick.width;
-                int height = brick.height;
                 g.setColor(Color.RED);
-                g.fillRect(x, y, width, height);
+                g.fillRect(brick.x, brick.y, brick.width, brick.height);
                 g.setColor(Color.BLACK);
-                g.drawRect(x, y, width, height);
+                g.drawRect(brick.x, brick.y, brick.width, brick.height);
             }
         }
 

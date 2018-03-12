@@ -36,7 +36,7 @@ class GameController extends JFrame {
         } );
 
         // Listen for mouse events to move paddle.
-        gameView.addMouseMotionListener(new MouseMotionListener() {
+        this.addMouseMotionListener(new MouseMotionListener() {
             public void mouseMoved(MouseEvent event) {
                 int x = event.getX();
                 game.movePaddle(x);
