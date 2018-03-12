@@ -59,7 +59,7 @@ class GameController extends JFrame {
     public void run() {
         while (true) {
             game.advanceGameState();
-            gameView.updateView();
+            gameView.repaint();
             try {
                 Thread.sleep(10L);
             } catch (java.lang.InterruptedException e) {

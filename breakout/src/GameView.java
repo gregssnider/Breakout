@@ -4,26 +4,23 @@ import javax.swing.*;
 import model.*;
 
 /**
- * Graphical view of bricks, ball, and paddle.
+ * Graphical view of Breakout: bricks, ball, paddle, and score.
  */
 class GameView extends JPanel {
 
+    // The game being viewed.
     private Game game;
 
+    /** Construct a view of 'game'. */
     GameView(Game game) {
         this.game = game;
-        setPreferredSize(getPreferredSize());
-        setDoubleBuffered(true);
+        //setPreferredSize(getPreferredSize());
+        //setDoubleBuffered(true);
     }
 
     /** Change the game being viewed. */
     void setGame(Game game) {
         this.game = game;
-        updateView();
-    }
-
-    /** Update and repaint the view of the game. */
-    void updateView() {
         repaint();
     }
 
@@ -33,8 +30,18 @@ class GameView extends JPanel {
         super.paintComponent(g);
         Board board = game.board;
 
+        // Paint a darker background.
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, board.width, board.height);
+
+        // Paint score.
+        g.setColor(Color.BLACK);
+        String score = "Score: " + game.getScore();
+        if (game.gameIsOver())
+            score += "   GAME OVER";
+        Font font = g.getFont().deriveFont( 20.0f );
+        g.setFont(font);
+        g.drawString(score, 10, 30);
 
         // Paint bricks.
         Brick[][] bricks = board.bricks;
@@ -64,6 +71,7 @@ class GameView extends JPanel {
         g.fillRect(ball.x, ball.y, ball.width, ball.height);
     }
 
+    /** Get the size of the playing field. */
     public Dimension getPreferredSize() {
         Board board = game.board;
         return new Dimension(board.width, board.height);

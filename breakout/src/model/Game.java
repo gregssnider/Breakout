@@ -16,6 +16,7 @@ public class Game {
     public Ball ball;
     public Paddle paddle;
     private boolean running = false;
+    private boolean gameOver = false;
     private int score = 0;
 
     /** Construct the game. */
@@ -53,13 +54,16 @@ public class Game {
         return score;
     }
 
+    /** Check if game is over. */
+    public boolean gameIsOver() {return gameOver;}
+
     /** Advance the state of the game by one clock tick. */
     public void advanceGameState() {
         if (!running)
             return;
         ball.move();
 
-        // See if ball hits a wall.
+        // See if ball hits a wall. If it hits the floor, game over.
         if (ball.intersects(board.leftWall))
             ball.speedX *= -1;
         if (ball.intersects(board.rightWall))
@@ -69,6 +73,7 @@ public class Game {
         if (ball.intersects(board.floor)) {
             ball.speedY *= -1;
             running = false;
+            gameOver = true;
         }
 
         // See if ball hits the paddle.
