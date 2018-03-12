@@ -49,7 +49,7 @@ public class Game {
         if (newX > (board.width - paddle.width))
             newX = board.width - paddle.width;
         paddle.x = newX;
-        paddle.y = yPosition - brickHeight - paddleHeight;
+        paddle.y = yPosition - paddleHeight;
     }
 
     /** Start the game. */
