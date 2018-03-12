@@ -36,11 +36,12 @@ public class Game {
     }
 
     /**
-     * Move the paddle to a new position in the x direction.
+     * Move the paddle to a new position.
      *
      * @param xPosition Position of the center of the paddle after the move.
+     * @param yPosition Position of the center of the paddle after the move.
      */
-    public void movePaddle(int xPosition) {
+    public void movePaddle(int xPosition, int yPosition) {
         // Paddle coordinates start at upper left corner, correct for that.
         int newX = xPosition - paddleWidth / 2;
         if (newX < 0)
@@ -48,6 +49,7 @@ public class Game {
         if (newX > (board.width - paddle.width))
             newX = board.width - paddle.width;
         paddle.x = newX;
+        paddle.y = yPosition - brickHeight - paddleHeight;
     }
 
     /** Start the game. */
@@ -73,12 +75,18 @@ public class Game {
 
         // See if ball hits a wall. If it hits the floor, game is over.
         // Bouncing is implemented by changing the velocity of the ball.
-        if (ball.intersects(board.leftWall))
+        if (ball.intersects(board.leftWall)) {
             ball.speedX *= -1;  // bounce
-        if (ball.intersects(board.rightWall))
+            ball.move();
+        }
+        if (ball.intersects(board.rightWall)) {
             ball.speedX *= -1;  // bounce
-        if (ball.intersects(board.ceiling))
+            ball.move();
+        }
+        if (ball.intersects(board.ceiling)) {
             ball.speedY *= -1;  // bounce
+            ball.move();
+        }
         if (ball.intersects(board.floor)) {
             running = false;
             gameOver = true;
