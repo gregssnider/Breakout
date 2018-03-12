@@ -31,7 +31,7 @@ class Rectangle {
      * @param pointY Y coordinate of point.
      * @return True if point is in this rectangle.
      */
-    boolean contains(int pointX, int pointY) {
+    private boolean contains(int pointX, int pointY) {
         return pointX >= x && pointX < x + width &&
                 pointY >= y && pointY < y + height;
     }
@@ -66,10 +66,6 @@ class Rectangle {
         return false;
     }
 
-    void print(String prefix) {
-        System.out.println(prefix + "  " + x + ".." + (x + width) + "   " + y + ".." + (y + height));
-    }
-
     /** Test code for Rectangle class. */
     public static void main(String[] args) {
         Rectangle r1 = new Rectangle(0, 0, 10, 10);
@@ -84,7 +80,7 @@ class Rectangle {
         System.out.println("Rectangle tests passed.");
     }
 
-    static void check(boolean expression) {
+    private static void check(boolean expression) {
         if (!expression) {
             throw new RuntimeException("Test failed.");
         }

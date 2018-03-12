@@ -14,8 +14,6 @@ class GameView extends JPanel {
     /** Construct a view of 'game'. */
     GameView(Game game) {
         this.game = game;
-        //setPreferredSize(getPreferredSize());
-        //setDoubleBuffered(true);
     }
 
     /** Change the game being viewed. */

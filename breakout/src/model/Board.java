@@ -2,23 +2,41 @@ package model;
 
 /**
  * Models a board in the Breakout game.
+ *
+ * For simplicity, Rectangles are used to model just about everything: bricks,
+ * paddle, ball, even the playing field itself. "Walls" are placed just outside
+ * of the playing field to detect when the ball has hit the edge of the playing
+ * field and must bounce back in.
+ *
+ * Collision detection is done by checking if the ball (a Rectangle) intersects
+ * with any other Rectangle (bricks, walls, paddle). When a collision is
+ * detected, the velocity of the ball is modified appropriately to model
+ * "bouncing." If the ball hits the "floor" wall, the game is over.
  */
 public class Board extends Rectangle {
 
-    public Wall leftWall;     // Rectangle just to the left of the board.
-    public Wall rightWall;    // Rectangle just to the right of the board.
-    public Wall floor;        // Rectangle just below the board.
-    public Wall ceiling;      // Rectangle just above the board.
+    Wall leftWall;     // Rectangle just to the left of the board.
+    Wall rightWall;    // Rectangle just to the right of the board.
+    Wall floor;        // Rectangle just below the board.
+    Wall ceiling;      // Rectangle just above the board.
     public Brick[][] bricks;  // The bricks on the board.
 
-    public Board(int brickWidth, int brickHeight, int brickRows,
+    /**
+     * Construct the Breakout playing field.
+     *
+     * @param brickWidth Width of each brick, in pixels.
+     * @param brickHeight Height of each brick, in pixels.
+     * @param brickRows Number of rows of bricks.
+     * @param brickColumns Number of columns of bricks.
+     */
+    Board(int brickWidth, int brickHeight, int brickRows,
                  int brickColumns)
     {
         super(0, 0, brickWidth * brickColumns, brickHeight * brickRows * 6);
 
         // We want the first row of bricks (from the top) to be spaced down
-        // the thickness of 4 bricks (need gap above bricks for ball to bounce
-        // around in.
+        // the thickness of 4 bricks. We need gap above bricks for ball to
+        // bounce around in.
         int brickStartingRow = 4 * brickHeight;
 
         // Create bricks.

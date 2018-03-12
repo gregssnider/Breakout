@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * The top level class of the Breakout game model (using the
+ * model-view-controller design pattern).
+ */
 public class Game {
 
     // Geometric parameters of game.
@@ -63,7 +67,7 @@ public class Game {
             return;
         ball.move();
 
-        // See if ball hits a wall. If it hits the floor, game over.
+        // See if ball hits a wall. If it hits the floor, game is over.
         if (ball.intersects(board.leftWall))
             ball.speedX *= -1;
         if (ball.intersects(board.rightWall))

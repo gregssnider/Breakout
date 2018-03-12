@@ -10,8 +10,8 @@ import model.Game;
  * Controller for Breakout.
  */
 class GameController extends JFrame {
-    private Game game;
-    private GameView gameView;
+    private Game game;            // The model.
+    private GameView gameView;    // The view.
     private JButton startButton;
 
     /** Constructor. */
@@ -21,12 +21,12 @@ class GameController extends JFrame {
         gameView = new GameView(game);
         startButton = new JButton("Start");
 
-        // Add components to window
+        // Add components to window.
         Container contentPane = getContentPane();
         contentPane.add(gameView, BorderLayout.CENTER);
         contentPane.add(startButton, BorderLayout.SOUTH);
 
-        // Listen for start button presses to (re)start the game.
+        // Listen for start button presses to start the game.
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game = new Game();
@@ -56,7 +56,7 @@ class GameController extends JFrame {
     /**
      * Run the game until user closes the window.
      */
-    public void run() {
+    void run() {
         while (true) {
             game.advanceGameState();
             gameView.repaint();
