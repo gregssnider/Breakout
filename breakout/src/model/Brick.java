@@ -8,9 +8,9 @@ public class Brick extends Rectangle {
     /**
      * Create a brick.
      *
-     * @see Rectangle class
+     * @see model.Rectangle
      */
-    public Brick(int x, int y, int width, int height) {
+    Brick(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 }

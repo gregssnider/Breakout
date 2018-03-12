@@ -8,9 +8,9 @@ public class Paddle extends Rectangle {
     /**
      * Create a paddle.
      *
-     * @see Rectangle class
+     * @see model.Rectangle
      */
-    public Paddle(int x, int y, int width, int height) {
+    Paddle(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 }

@@ -11,7 +11,7 @@ public class Ball extends Rectangle {
     /**
      * Create a ball.
      *
-     * @see Rectangle class
+     * @see model.Rectangle
      */
     Ball(int x, int y, int diameter) {
         super(x, y, diameter, diameter);

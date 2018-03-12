@@ -12,7 +12,7 @@ public class Wall extends Rectangle {
     /**
      * Create a wall.
      *
-     * @see Rectangle class
+     * @see model.Rectangle
      */
     Wall(int x, int y, int width, int height) {
         super(x, y, width, height);
